@@ -1,0 +1,20 @@
+---
+app:
+- name: main
+  message: |
+    hello there!
+    This is multiline!
+  items:
+    - name: "Shut down"
+      menu: shutdown-confirm
+    - name: i3
+      script: ./i3.sh
+  prompt: 'select: '
+- name: shutdown-confirm
+  message: Confirm shutdown
+  items:
+    - name: "Yes" 
+      script: shutdown
+    - name: "No" 
+      menu: main
+  prompt: 'select: '
