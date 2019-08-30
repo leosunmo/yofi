@@ -14,7 +14,7 @@ app:
   message: Confirm shutdown
   items:
     - name: "Yes" 
-      script: shutdown
+      script: shutdown-script
     - name: "No" 
       menu: main
   prompt: 'select: '
