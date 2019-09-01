@@ -165,7 +165,7 @@ func (a *App) ExecuteCommand(cmd Command) (string, error) {
 	path, execErr := exec.LookPath(cmd.Executable)
 	if execErr != nil {
 		// File isn't in PATH, not executable or should have ./ in front of it
-		return "", execErr
+		return "", fmt.Errorf("%s\nuse \"./\" for local files or provide an absolute path", execErr)
 	}
 
 	var args []string
@@ -265,7 +265,7 @@ func (a *App) Run(m *Menu) (string, error) {
 		if confirmed {
 			stdout, err := a.ExecuteCommand(cmd)
 			if err != nil {
-				return "", fmt.Errorf("%s failed with %s\nuse \"./\" for local files or provide an absolute path", cmd, err.Error())
+				return "", fmt.Errorf("%s: %s", cmd, err.Error())
 			}
 			return stdout, nil
 		}
