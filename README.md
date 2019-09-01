@@ -24,14 +24,14 @@ app:
     - name: "Other menu"
       menu: other-menu
     - name: script not in path
-      command: ./not-in-path   # If you want to execute a local script, use "./", by default it will search for the command in $PATH
+      command: ./not-in-path.sh   # If you want to execute a local script, use "./", by default it will search for the command in $PATH
     - name: script doesn't exist
       command: doesntexist   # Graceful exit with Rofi error message at the top of the screen.
     - name: i3
       command: i3  # Finds the executable using $PATH
       args:        # Run "i3" which these arguments
         - --version
-    - name: fail-script
+    - name: fail-script  # This script will fail and display a Rofi style error message
       command: ./fail.sh
 - name: other-menu
   message: This is another menu, select "no" to go back
