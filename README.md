@@ -42,3 +42,33 @@ app:
       menu: main   # return to menu "main"
   prompt: 'Y/N'
 ```
+
+## Building
+Download [Go](https://golang.org/dl/) and follow the [instructions](https://golang.org/doc/install#install)
+
+TL;DR installing 1.12.9 on Ubuntu-like systems:
+```
+wget https://dl.google.com/go/go1.12.9.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.12.9.linux-amd64.tar.gz
+
+echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.basrc # or ~/.profile
+
+go version
+```
+
+Clone this repo and build it.
+```
+git clone https://github.com/leosunmo/yofi.git
+cd yofi
+
+go build .
+```
+
+Or just use `go get` to install the binary only
+```
+go get github.com/leosunmo/yofi
+
+which yofi
+# ~/go/bin/yofi
+
+```
