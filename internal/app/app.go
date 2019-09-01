@@ -123,11 +123,11 @@ func (a *App) Run(m *Menu) (string, error) {
 		// If this fails, the previous selection is returned as "final",
 		// we should check the exit status of the command or script
 		if confirmed {
-			stdout, err := a.ExecuteCommand(cmd)
+			output, err := a.ExecuteCommand(cmd)
 			if err != nil {
-				return "", fmt.Errorf("%s: %s", cmd, err.Error())
+				return output, fmt.Errorf("%s: %s", cmd, err.Error())
 			}
-			return stdout, nil
+			return output, nil
 		}
 		// Did not confirm, return to previous menu
 		if _, err := a.Run(m); err != nil {
@@ -191,7 +191,10 @@ func (a *App) ExecuteCommand(cmd Command) (string, error) {
 	if cmdErr != nil {
 		// non-zero exit, return the error message (and Stderr if not empty) for display
 		if exitErr, ok := cmdErr.(*exec.ExitError); ok {
-			return string(exitErr.Stderr), cmdErr
+			if len(exitErr.Stderr) > 0 {
+				return string(exitErr.Stderr), cmdErr
+			}
+			return stdOut.String(), cmdErr
 		}
 		return "", cmdErr
 	}

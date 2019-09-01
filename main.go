@@ -51,6 +51,9 @@ func main() {
 	a := app.NewApp(yamlFile)
 	resp, err := a.Start()
 	if err != nil {
+		if a.Options.Stdout && resp != "" {
+			fmt.Print(resp)
+		}
 		displayRofiError(err.Error())
 		log.Fatal(err.Error())
 		os.Exit(1)
