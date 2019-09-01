@@ -1,9 +1,6 @@
 ---
 app:
-- name: main
-  message: |
-    hello there!
-    This is multiline!
+- name: shutdown-menu
   items:
     - name: "Shutdown"
       confirm: Sure you want to shutdown?
@@ -40,21 +37,3 @@ app:
         - exit
     - name: "Cancel"
   prompt: 'Select'
-- name: shutdown-confirm
-  message: Confirm shutdown
-  items:
-    - name: "Yes" 
-      command: shutdown-script
-    - name: "No" 
-      menu: main
-  prompt: 'Select'
-
-
-  # [Shutdown]="systemctl poweroff"
-  # [Reboot]="systemctl reboot"
-  # [Hibernate]="systemctl hibernate"
-  # [Suspend]="systemctl suspend"
-  # [Halt]="systemctl halt"
-  # [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
-  # [Logout]="i3-msg exit"
-  # [Cancel]=""
