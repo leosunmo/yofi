@@ -38,6 +38,7 @@ type MenuItem struct {
 	Command string      `yaml:"command"`
 	Args    []string    `yaml:"args"`
 	Confirm interface{} `yaml:"confirm"`
+	Return  string      `yaml:"return"`
 }
 
 type Command struct {
@@ -273,6 +274,10 @@ func (a *App) Run(m *Menu) (string, error) {
 		if _, err := a.Run(m); err != nil {
 			return "", err
 		}
+	}
+	if sm.Return != "" {
+		a.selection = sm.Return
+		return sm.Return, nil
 	}
 	return a.selection, nil
 }

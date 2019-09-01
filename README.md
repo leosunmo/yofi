@@ -1,3 +1,14 @@
+# Yofi - YAML defined Rofi menus
+Yofi is a simple project that allows you to build Rofi menus in a YAML configuration file.
+
+## Usage
+By default yofi looks for a `menu.yaml` file in the current directory, otherwise you can specify the YAML file as an argument.
+For example, to run the shutdown menu, `yofi shutdown-menu.yaml`.
+
+## YAML config options
+Here's all of the options available.
+```yaml
+---
 options:
   stdout: true   # Print the final selection or script output to STDOUT
 app:
@@ -30,3 +41,4 @@ app:
     - name: "No" 
       menu: main   # return to menu "main"
   prompt: 'Y/N'
+```
