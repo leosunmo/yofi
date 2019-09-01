@@ -1,20 +1,41 @@
 ---
+options:
+  stdout: true
 app:
 - name: main
   message: |
     hello there!
     This is multiline!
   items:
-    - name: "Shut down"
-      menu: shutdown-confirm
+    - name: "Shutdown"
+      command: shutdown
+      confirm: Sure you want to shutdown?
+    - name: script not in path
+      command: ./not-in-path
+    - name: script doesn't exist
+      command: doesntexist
     - name: i3
-      script: ./i3.sh
-  prompt: 'select: '
+      command: i3
+      args:
+        - --version
+    - name: fail-script
+      command: ./fail.sh
+  prompt: 'Select'
 - name: shutdown-confirm
   message: Confirm shutdown
   items:
     - name: "Yes" 
-      script: shutdown-script
+      command: shutdown-script
     - name: "No" 
       menu: main
-  prompt: 'select: '
+  prompt: 'Select'
+
+
+  # [Shutdown]="systemctl poweroff"
+  # [Reboot]="systemctl reboot"
+  # [Hibernate]="systemctl hibernate"
+  # [Suspend]="systemctl suspend"
+  # [Halt]="systemctl halt"
+  # [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
+  # [Logout]="i3-msg exit"
+  # [Cancel]=""

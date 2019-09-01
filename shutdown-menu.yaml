@@ -1,0 +1,60 @@
+---
+app:
+- name: main
+  message: |
+    hello there!
+    This is multiline!
+  items:
+    - name: "Shutdown"
+      confirm: Sure you want to shutdown?
+      command: systemctl
+      args:
+        - poweroff
+    - name: "Reboot"
+      confirm: Sure you want to reboot?
+      command: systemctl
+      args:
+        - reboot
+    - name: "Hibernate"
+      confirm: Sure you want to hibernate?
+      command: systemctl
+      args:
+        - hibernate
+    - name: "Suspend"
+      confirm: Sure you want to suspend?
+      command: systemctl
+      args:
+        - suspend
+    - name: "Halt"
+      confirm: Sure you want to halt?
+      command: systemctl
+      args:
+        - halt
+    - name: "Lock"
+      command: gnome-screensaver-command
+      args:
+        - --lock
+    - name: "Logout"
+      command: i3-msg
+      args:
+        - exit
+    - name: "Cancel"
+  prompt: 'Select'
+- name: shutdown-confirm
+  message: Confirm shutdown
+  items:
+    - name: "Yes" 
+      command: shutdown-script
+    - name: "No" 
+      menu: main
+  prompt: 'Select'
+
+
+  # [Shutdown]="systemctl poweroff"
+  # [Reboot]="systemctl reboot"
+  # [Hibernate]="systemctl hibernate"
+  # [Suspend]="systemctl suspend"
+  # [Halt]="systemctl halt"
+  # [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
+  # [Logout]="i3-msg exit"
+  # [Cancel]=""
